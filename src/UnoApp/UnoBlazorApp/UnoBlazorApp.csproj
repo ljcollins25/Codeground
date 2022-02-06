@@ -9,6 +9,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
+
+
+	<PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+	<PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.0.1" />
+	<PackageReference Include="Uno.UI.WebAssembly" Version="4.0.13" />
+	<PackageReference Include="Uno.UI.RemoteControl" Version="4.0.13" Condition="'$(Configuration)'=='Debug'" />
+	<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.13" />
+	<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.0.13" />
   </ItemGroup>
 
 </Project>

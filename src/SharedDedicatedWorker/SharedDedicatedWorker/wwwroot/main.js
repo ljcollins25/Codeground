@@ -1,52 +1,43 @@
-﻿if (typeof SharedArrayBuffer === 'undefined') {
-    if ("serviceWorker" in navigator) {
-        // Register service worker
-        navigator.serviceWorker.register("./headers-service-worker.js").then(
-            function (registration) {
-                console.log("COOP/COEP Service Worker registered", registration.scope);
-                // If the registration is active, but it's not controlling the page
-                if (registration.active && !navigator.serviceWorker.controller) {
-                    window.location.reload();
-                }
-            },
-            function (err) {
-                console.log("COOP/COEP Service Worker failed to register", err);
-            }
-        );
-    } else {
-        console.warn("Cannot register a service worker");
-    }
-}
-
-var sab = new SharedArrayBuffer(1024);
-console.log("Created shared array buffer");
-
+﻿var id = "id" + Math.random().toString(16).slice(2);
 var sharedWorker = new SharedWorker("sharedworker.js");
 
+var workers = {};
+
+var NodeService = {
+    message: function (m) {
+        console.log(`Message '${m}'`);
+    },
+    createWorker: function (args) {
+        var worker = new Worker(args.url);
+        workers[args.name] = worker;
+        callShared("registerWorker", {
+            
+        })
+    },
+};
+
+sharedWorker.port.onmessage = function (e) {
+    var d = e.data;
+    console.log(`Received [SharedWorker] ${d.method}: '${d.args}'`);
+    NodeService[d.method](d.args);
+};
+
 sharedWorker.port.start();
-sharedWorker.port.postMessage("Hello worker");
 
-//var appWorker = new Worker("./app-exe-worker.js");
+function callShared(method, args) {
+    sharedWorker.port.postMessage({
+        id: id,
+        method: method,
+        args: args,
+    });
+}
 
-//console.log("Created app worker.");
+callShared("connect", "Connecting to shared worker.");
 
-//appWorker.onmessage = function (e) {
-//    console.log('Message received from worker');
-//    console.log(e.data.message);
+addEventListener('beforeunload', function () {
+    callShared("disconnect", "Disconnecting to shared worker.");
+});
 
-//    fetch(e.data.url).then(function (response) {
-//        return response.text();
-//    }).then(function (data) {
-
-//        console.log(data);
-
-//        console.log(e.data.sab[0]); // 0;
-//        Atomics.store(e.data.sab, 0, 123);
-//        Atomics.notify(e.data.sab, 0, 1);
-
-//    }).catch(function (err) {
-//        console.log('Fetch Error :-S', err);
-//    });
-//}
-
-//appWorker.postMessage("Hi worker.");
+function send(target, message) {
+    callShared("message", { sender: id, target, message });
+}
