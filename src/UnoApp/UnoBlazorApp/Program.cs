@@ -1,10 +1,45 @@
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using UnoApp;
+using System;
+using Windows.UI.Xaml;
 
-Console.WriteLine("Hello2");
+namespace UnoBlazorApp
+{
+	public class Program
+	{
+		private static App _app;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
+		static async Task Main(string[] args)
+		{
+			Console.WriteLine("Hello5");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+			var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-await builder.Build().RunAsync();
+			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+			Console.WriteLine("starting app");
+
+			try
+			{
+				Windows.UI.Xaml.Application.Start(_ => _app = new App());
+			}
+			catch (Exception ex) when (CheckException(ex))
+            {
+
+            }
+
+			Console.WriteLine("started app");
+
+			await builder.Build().RunAsync();
+
+			Console.WriteLine("finished run async");
+
+		}
+
+        private static bool CheckException(Exception ex)
+        {
+			return false;
+        }
+    }
+}
+

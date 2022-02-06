@@ -11,7 +11,7 @@ var NodeService = {
         var worker = new Worker(args.url);
         workers[args.name] = worker;
         callShared("registerWorker", {
-            
+            worker.postMessage()
         })
     },
 };
