@@ -17,34 +17,3 @@
         console.warn("Cannot register a service worker");
     }
 }
-
-var sab = new SharedArrayBuffer(1024);
-console.log("Created shared array buffer");
-
-
-var appWorker = new Worker("./app-worker.js");
-
-console.log("Created app worker.");
-
-appWorker.onmessage = function (e) {
-    console.log('Message received from worker');
-    console.log(e.data.message);
-
-    fetch(e.data.url).then(function (response) {
-        return response.text();
-    }).then(function (data) {
-
-        console.log(data);
-
-        console.log(e.data.sab[0]); // 0;
-        Atomics.store(e.data.sab, 0, 123);
-        Atomics.notify(e.data.sab, 0, 1);
-
-    }).catch(function (err) {
-        console.log('Fetch Error :-S', err);
-    });
-
-
-}
-
-appWorker.postMessage("Hi worker.");
