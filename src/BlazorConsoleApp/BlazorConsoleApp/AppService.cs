@@ -1,15 +1,38 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorWorker.BackgroundServiceFactory;
+using BlazorWorker.Core;
+using BlazorWorker.WorkerBackgroundService;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Hosting;
 
 namespace BlazorConsoleApp
 {
-    public class AppService : IHandleAfterRender
+    public record AppService(IWorkerFactory WorkerFactory) : IHostedService
     {
-        public AppService()
+        public IWorker Worker { get; private set; }
+
+        //public AppService(IWorkerFactory workerFactory)
+        //{
+        //}
+
+        public IWorkerBackgroundService<MyCPUIntensiveService> Service { get; private set; }
+
+        public Task OnAfterRenderAsync()
         {
+            return Task.CompletedTask;
+        }
+
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            Worker = await WorkerFactory.CreateAsync();
+            Service = await Worker.CreateBackgroundServiceAsync<MyCPUIntensiveService>();
+
+            var result = await Service.RunAsync(s => s.MyMethod(10));
+
+            var result2 = await Service.RunAsync(s => s.MyMethod(22));
 
         }
 
-        public Task OnAfterRenderAsync()
+        public Task StopAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
         }
@@ -19,7 +42,7 @@ namespace BlazorConsoleApp
     {
         public int MyMethod(int parameter)
         {
-            Console.WriteLine(parameter);
+            Console.WriteLine($"Hello from CPU Service: {parameter}");
             return parameter + 1;
         }
     }

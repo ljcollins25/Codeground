@@ -2,14 +2,28 @@ using BlazorConsoleApp;
 using BlazorWorker.Core;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Hosting;
 
 Console.WriteLine("Start application");
 
-
+var host = new HostBuilder();
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-builder.Services.AddSingleton<AppService>();
-builder.Services.AddWorkerFactory();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+//builder.Services.AddSingleton<AppService>();
+//builder.Services
 
-await builder.Build().RunAsync();
+host.ConfigureServices(sc =>
+{
+    foreach (var service in builder.Services)
+    {
+        sc.Add(service);
+    }
+
+    sc.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+    sc.AddWorkerFactory();
+    sc.AddHostedService<AppService>();
+});
+
+host.Build().RunAsync();
+
+//await builder.Build().RunAsync();
