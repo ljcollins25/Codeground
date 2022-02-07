@@ -11,6 +11,7 @@ namespace UnoBlazorApp
 
 		static async Task Main(string[] args)
 		{
+            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 			Console.WriteLine("Hello5");
 
 			var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -30,11 +31,17 @@ namespace UnoBlazorApp
 
 			Console.WriteLine("started app");
 
-			await builder.Build().RunAsync();
+			//await builder.Build().RunAsync();
 
 			Console.WriteLine("finished run async");
 
 		}
+
+        private static void CurrentDomain_FirstChanceException(object? sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+        {
+			var exception = e.Exception;
+			var exceptionText = e.ToString();
+        }
 
         private static bool CheckException(Exception ex)
         {

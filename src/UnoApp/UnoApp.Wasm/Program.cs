@@ -9,7 +9,11 @@ namespace UnoApp.Wasm
 
 		static int Main(string[] args)
 		{
+			Console.WriteLine("Starting");
 			Windows.UI.Xaml.Application.Start(_ => _app = new App());
+
+			Console.WriteLine("Finished");
+
 
 			return 0;
 		}
