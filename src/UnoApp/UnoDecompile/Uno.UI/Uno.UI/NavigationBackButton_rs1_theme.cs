@@ -1,0 +1,8 @@
+namespace Uno.UI;
+
+internal static class NavigationBackButton_rs1_themeresources_v1_e844bf12fd298697b85f37ebdfa606c6XamlApplyExtensions
+{
+}
+internal static class NavigationBackButton_rs1_themeresources_9c2f209b520c8e60647d90a7f50a51b3XamlApplyExtensions
+{
+}

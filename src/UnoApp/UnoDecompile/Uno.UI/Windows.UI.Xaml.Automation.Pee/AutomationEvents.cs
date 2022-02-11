@@ -1,0 +1,35 @@
+namespace Windows.UI.Xaml.Automation.Peers;
+
+public enum AutomationEvents
+{
+	ToolTipOpened,
+	ToolTipClosed,
+	MenuOpened,
+	MenuClosed,
+	AutomationFocusChanged,
+	InvokePatternOnInvoked,
+	SelectionItemPatternOnElementAddedToSelection,
+	SelectionItemPatternOnElementRemovedFromSelection,
+	SelectionItemPatternOnElementSelected,
+	SelectionPatternOnInvalidated,
+	TextPatternOnTextSelectionChanged,
+	TextPatternOnTextChanged,
+	AsyncContentLoaded,
+	PropertyChanged,
+	StructureChanged,
+	DragStart,
+	DragCancel,
+	DragComplete,
+	DragEnter,
+	DragLeave,
+	Dropped,
+	LiveRegionChanged,
+	InputReachedTarget,
+	InputReachedOtherElement,
+	InputDiscarded,
+	WindowClosed,
+	WindowOpened,
+	ConversionTargetChanged,
+	TextEditTextChanged,
+	LayoutInvalidated
+}

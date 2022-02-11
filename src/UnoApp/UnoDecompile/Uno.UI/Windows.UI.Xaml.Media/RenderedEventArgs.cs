@@ -1,0 +1,17 @@
+using System;
+using Uno;
+
+namespace Windows.UI.Xaml.Media;
+
+[NotImplemented]
+public class RenderedEventArgs
+{
+	[NotImplemented(new string[] { "__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__" })]
+	public TimeSpan FrameDuration
+	{
+		get
+		{
+			throw new NotImplementedException("The member TimeSpan RenderedEventArgs.FrameDuration is not implemented in Uno.");
+		}
+	}
+}

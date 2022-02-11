@@ -1,0 +1,5 @@
+namespace Uno.UI;
+
+internal static class NavigationBackButton_rs5_themeresources_acae41101b63bbbebe0440a0413c47daXamlApplyExtensions
+{
+}

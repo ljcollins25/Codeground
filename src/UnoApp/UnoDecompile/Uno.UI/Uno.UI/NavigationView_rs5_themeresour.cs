@@ -1,0 +1,5 @@
+namespace Uno.UI;
+
+internal static class NavigationView_rs5_themeresources_f3ebc07056603a0a8c04c7aeaef43e46XamlApplyExtensions
+{
+}
