@@ -11,6 +11,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Data;
 
 namespace Windows.UI.Xaml;
+#nullable enable annotations
 
 [Windows.UI.Xaml.Data.Bindable]
 public class FrameworkTemplate : DependencyObject, IDependencyObjectStoreProvider, IWeakReferenceProvider
@@ -146,9 +147,8 @@ public class FrameworkTemplate : DependencyObject, IDependencyObjectStoreProvide
 	}
 
 	public FrameworkTemplate(Func<UIElement?>? factory)
+		: this(null, (object? _) => factory?.Invoke())
 	{
-		Func<UIElement?> factory2 = factory;
-		this._002Ector(null, (object? _) => factory2?.Invoke());
 	}
 
 	public FrameworkTemplate(object? owner, FrameworkTemplateBuilder? factory)

@@ -11,7 +11,7 @@ public static class CollectionViewExtensions
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static IEnumerable<IEnumerable> GetCollectionGroups(this ICollectionView collectionView)
 	{
-		return (from ICollectionViewGroup g in collectionView.CollectionGroups?
+		return (from ICollectionViewGroup g in collectionView.CollectionGroups
 			select g.Group as IEnumerable);
 	}
 

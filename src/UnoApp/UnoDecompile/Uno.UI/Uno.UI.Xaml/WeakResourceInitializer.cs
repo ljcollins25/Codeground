@@ -16,10 +16,8 @@ public class WeakResourceInitializer
 
 	public WeakResourceInitializer(object owner, ResourceInitializerWithOwner initializer)
 	{
-		ResourceInitializerWithOwner initializer2 = initializer;
-		base._002Ector();
 		WeakResourceInitializer weakResourceInitializer = this;
 		_owner = WeakReferencePool.RentWeakReference(this, owner);
-		Initializer = () => initializer2(weakResourceInitializer._owner?.Target);
+		Initializer = () => initializer(weakResourceInitializer._owner?.Target);
 	}
 }

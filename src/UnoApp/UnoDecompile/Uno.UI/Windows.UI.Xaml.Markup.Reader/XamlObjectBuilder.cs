@@ -726,7 +726,18 @@ internal class XamlObjectBuilder
 					{
 						throw new NotSupportedException("Markup extension " + xamlObjectDefinition3.Type.Name + " is not supported for Bindiner.Converter");
 					}
+
 					staticResourceName = xamlObjectDefinition3.Members.FirstOrDefault()?.Value?.ToString();
+
+					void ResolveResource()
+					{
+						var staticResource = ResolveStaticResource(instance, staticResourceName);
+
+						if (staticResource != null)
+						{
+							binding.Converter = staticResource as IValueConverter;
+						}
+					}
 					_postActions.Enqueue(ResolveResource);
 				}
 				break;

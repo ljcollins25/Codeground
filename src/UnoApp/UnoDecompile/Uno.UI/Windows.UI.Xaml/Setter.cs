@@ -64,12 +64,11 @@ public sealed class Setter : SetterBase
 	}
 
 	public Setter(DependencyProperty targetProperty, object? owner, SetterValueProviderHandlerWithOwner valueProvider)
+		: base()
 	{
-		SetterValueProviderHandlerWithOwner valueProvider2 = valueProvider;
-		base._002Ector();
 		Property = targetProperty;
 		ManagedWeakReference ownerRef = WeakReferencePool.RentWeakReference(this, owner);
-		_valueProvider = () => valueProvider2(ownerRef?.Target);
+		_valueProvider = () => valueProvider(ownerRef?.Target);
 	}
 
 	public Setter(TargetPropertyPath targetPath, object value)
