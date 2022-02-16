@@ -23,6 +23,11 @@ namespace BlazorConsoleApp
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
+            Console.WriteLine("Started AppService");
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
             Worker = await WorkerFactory.CreateAsync();
             Service = await Worker.CreateBackgroundServiceAsync<MyCPUIntensiveService>();
 

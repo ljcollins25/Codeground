@@ -41,6 +41,12 @@ var document = {
     hasChildNodes: function () {
         return false;
     },
+    querySelector: function (a) {
+        return undefined;
+    },
+    querySelectorAll: function (a) {
+        return [];
+    },
     body: {
         appendChild: function (c) {
             if (c.kind === "script") {

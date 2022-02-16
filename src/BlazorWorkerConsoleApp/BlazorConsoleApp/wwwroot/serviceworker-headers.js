@@ -1,4 +1,6 @@
-﻿self.addEventListener("install", function () {
+﻿console.log("MyHREF: " + self.location.href);
+
+self.addEventListener("install", function () {
     console.log('install');
     self.skipWaiting();
 });
@@ -15,10 +17,12 @@ self.addEventListener("fetch", function (event) {
 
     if ((event.request.destination !== "document" && event.request.destination !== "sharedworker" && event.request.destination !== "worker")
         || event.request.method !== "GET") {
+        //console.log(`fetch,skip0: (url: ${event.request.url} dst: ${event.request.destination}, mth: ${event.request.method}, mode: ${event.request.mode})`);
         return;
     }
 
     if (event.request.cache === "only-if-cached" && event.request.mode !== "same-origin") {
+        //console.log(`fetch,skip1: (url: ${event.request.url} dst: ${event.request.destination}, mth: ${event.request.method}, mode: ${event.request.mode})`);
         return;
     }
 
