@@ -1,0 +1,1 @@
+{"version":3,"file":"sharedworker.main.js","sourceRoot":"","sources":["sharedworker.main.ts"],"names":[],"mappings":"AACA,IAAI,CAAC,aAAa,CAAC,QAAQ,CAAC,CAAC;AAC7B,IAAI,aAAa,GAAG,IAAI,QAAQ,CAAC,aAAa,EAAE,CAAC;AACjD,IAAI,MAAM,GAAG,IAAI,QAAQ,CAAC,SAAS,CAAC,aAAa,CAAC,CAAC"}

@@ -6,4 +6,43 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\ts\definitions.js" />
+    <Content Remove="wwwroot\ts\definitions.js.map" />
+    <Content Remove="wwwroot\ts\empty - Copy.js" />
+    <Content Remove="wwwroot\ts\empty - Copy.js.map" />
+    <Content Remove="wwwroot\ts\ipc.js" />
+    <Content Remove="wwwroot\ts\ipc.js.map" />
+    <Content Remove="wwwroot\ts\page.main.js" />
+    <Content Remove="wwwroot\ts\page.main.js.map" />
+    <Content Remove="wwwroot\ts\sharedworker - Copy.main.js" />
+    <Content Remove="wwwroot\ts\sharedworker - Copy.main.js.map" />
+    <Content Remove="wwwroot\ts\sharedworker.main.js" />
+    <Content Remove="wwwroot\ts\sharedworker.main.js.map" />
+    <Content Remove="wwwroot\ts\worker.main.js" />
+    <Content Remove="wwwroot\ts\worker.main.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ts\definitions.js" />
+    <None Include="wwwroot\ts\definitions.js.map" />
+    <None Include="wwwroot\ts\ipc.js" />
+    <None Include="wwwroot\ts\ipc.js.map" />
+    <None Include="wwwroot\ts\page.main.js" />
+    <None Include="wwwroot\ts\page.main.js.map" />
+    <None Include="wwwroot\ts\empty.js" />
+    <None Include="wwwroot\ts\empty.js.map" />
+    <None Include="wwwroot\ts\sharedworker.main.js" />
+    <None Include="wwwroot\ts\sharedworker.main.js.map" />
+    <None Include="wwwroot\ts\worker.main.js" />
+    <None Include="wwwroot\ts\worker.main.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.5.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
