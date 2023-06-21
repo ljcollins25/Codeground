@@ -5,6 +5,7 @@
             <li>text</li>
         </ul>
         <!-- Other embed HTML element/text into SVG -->
+        <iframe src="https://example.com" width="100%" height="400px" frameborder="0"></iframe>
     </div>
 </foreignObject>
 </svg>
